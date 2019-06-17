@@ -15,12 +15,12 @@ variables. How I'm deploying it to servers:
 2. Run `yggdrasil -genconf` which will produce a new configuration, including new cryptographic keys. I pick up
     the following variables and save them as Ansible variables for first server e.g. `host_vars/server1`
     
-| Yggdrasil config    | Ansible variable     |
-|---------------------|----------------------|
-| EncryptionPublicKey | yggdrasil_enc_pubkey |
-| EncryptionPrivateKey| yggdrasil_enc_privkey|
-| SigningPublicKey    | yggdrasil_sig_pubkey |
-| SigningPrivateKey   | yggdrasil_sig_privkey|
+| Yggdrasil config    | Ansible variable        |
+|---------------------|-------------------------|
+| EncryptionPublicKey | `yggdrasil_enc_pubkey`  |
+| EncryptionPrivateKey| `yggdrasil_enc_privkey` |
+| SigningPublicKey    | `yggdrasil_sig_pubkey`  |
+| SigningPrivateKey   | `yggdrasil_sig_privkey` |
 
 3. Repeat step 2 for other servers
 
