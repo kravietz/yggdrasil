@@ -16,7 +16,7 @@ variables. How I'm deploying it to servers:
     the following variables and save them as Ansible variables for first server e.g. `host_vars/server1`
     
 | Yggdrasil config    | Ansible variable     |
-|--------------------------------------------|
+|---------------------|----------------------|
 | EncryptionPublicKey | yggdrasil_enc_pubkey |
 | EncryptionPrivateKey| yggdrasil_enc_privkey|
 | SigningPublicKey    | yggdrasil_sig_pubkey |
