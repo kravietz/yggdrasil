@@ -45,6 +45,7 @@
     state: started
     enabled: yes
 
+  # run setup to fetch newly created IPv6 address on tun0 interface
 - setup:
 
 - name: Yggdrasil systemd override directory
@@ -52,6 +53,7 @@
     dest: /etc/systemd/system/yggdrasil.service.d/
     state: directory
 
+  # we need the Yggdrasil IPv6 address to set it as deprecated
 - name: decrease Yggdrasil address preference
   template:
     src: templates/override.conf.j2
