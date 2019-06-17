@@ -1,0 +1,2 @@
+[Service]
+ExecStartPost=/sbin/ip addr replace dev tun0 {{ansible_tun0.ipv6.0.address}}/7 scope global preferred_lft 0

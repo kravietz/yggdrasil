@@ -1,0 +1,61 @@
+---
+- name: yggdrasil apt key
+  apt_key: url="https://neilalexander.s3.eu-west-2.amazonaws.com/deb/key.txt"
+
+- name: yggdrasil apt repo
+  apt_repository: repo='deb http://neilalexander.s3.eu-west-2.amazonaws.com/deb/ debian yggdrasil'
+
+- name: yggdrasil package is installed
+  apt: name=yggdrasil
+
+- name: update gai.conf label
+  lineinfile:
+    dest: /etc/gai.conf
+    line: "label 0200::/7 15"
+    regexp: "^label\\s+0200::/7"
+
+- name: update gai.conf precedence
+  lineinfile:
+    dest: /etc/gai.conf
+    line: "precedence 0200::/7 90"
+    regexp: "^precedence\\s+0200::/7"
+
+- name: AppArmor policy for Yggdrasil
+  copy:
+    src: files/apparmor.conf
+    dest: /etc/apparmor.d/usr.bin.yggdrasil
+    validate: "apparmor_parser -d %s"
+  notify:
+  - reload apparmor yggdrasil
+
+- name: configuration file
+  template:
+    src: templates/yggdrasil.conf.j2
+    dest: /etc/yggdrasil.conf
+    owner: root
+    group: yggdrasil
+    mode: 0640
+    validate: "yggdrasil -normaliseconf -useconf < %s"
+  notify:
+  - restart yggdrasil
+
+- name: yggdrasil service
+  service:
+    name: yggdrasil
+    state: started
+    enabled: yes
+
+- setup:
+
+- name: Yggdrasil systemd override directory
+  file:
+    dest: /etc/systemd/system/yggdrasil.service.d/
+    state: directory
+
+- name: decrease Yggdrasil address preference
+  template:
+    src: templates/override.conf.j2
+    dest: /etc/systemd/system/yggdrasil.service.d/override.conf
+  notify:
+  - restart yggdrasil
+  - reload systemd

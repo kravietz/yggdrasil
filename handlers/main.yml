@@ -1,0 +1,11 @@
+---
+- name: restart yggdrasil
+  service:
+    name: yggdrasil
+    state: restarted
+
+- name: reload apparmor yggdrasil
+  command: apparmor_parser -r -W /etc/apparmor.d/usr.bin.yggdrasil
+
+- name: reload systemd
+  systemd: daemon_reload=yes
