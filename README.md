@@ -14,6 +14,8 @@ variables. How I'm deploying it to servers:
 1. Install Yggdrasil package on my laptop
 2. Run `yggdrasil -genconf` which will produce a new configuration, including new cryptographic keys. I pick up
     the following variables and save them as Ansible variables for first server e.g. `host_vars/server1`
+3. Repeat step 2 for other servers
+
     
 | Yggdrasil config    | Ansible variable        |
 |---------------------|-------------------------|
@@ -21,8 +23,6 @@ variables. How I'm deploying it to servers:
 | EncryptionPrivateKey| `yggdrasil_enc_privkey` |
 | SigningPublicKey    | `yggdrasil_sig_pubkey`  |
 | SigningPrivateKey   | `yggdrasil_sig_privkey` |
-
-3. Repeat step 2 for other servers
 
 To connect to the public Yggdarsil network set at least one peer in `yggdrasil_peers` - use one that
 is close geographically and latency-wise. You can find them at [public-peers](https://github.com/yggdrasil-network/public-peers)
