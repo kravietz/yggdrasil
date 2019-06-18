@@ -10,7 +10,7 @@
         "{{item}}"{% if not loop.last %}, {% endif %}
     {% endfor %}
   ],
-  "AdminListen": {{ admin_listen }},
+  "AdminListen": "{{ admin_listen }}",
   "MulticastInterfaces": [
     {% for item in yggdrasil_allowed_public_keys %}
         "{{item}}"{% if not loop.last %}, {% endif %}
