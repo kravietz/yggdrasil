@@ -80,6 +80,9 @@ yggdrasil_max_queue_size: 4194304
 
 yggdrasil_nodeinfo_privacy: no
 
+yggdrasil_node_info: {}
+#  name: mynode.y.example.com
+
 ```
 
 License

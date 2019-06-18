@@ -73,5 +73,9 @@
     "MaxTotalQueueSize": {{ yggdrasil_max_queue_size }}
   },
   "NodeInfoPrivacy": {% if yggdrasil_nodeinfo_privacy %}true{% else %}false{% endif %},
-  "NodeInfo": {}
+  "NodeInfo": {
+    {% for k,v in yggdrasil_node_info.items() %}
+        "{{ k }}": "{{ v }}"{% if not loop.last %}, {% endif %}
+    {% endfor %}
+    }
 }
