@@ -1,9 +1,9 @@
 ---
 - name: yggdrasil apt key
-  apt_key: url="https://neilalexander.s3.eu-west-2.amazonaws.com/deb/key.txt"
+  apt_key: url="https://neilalexander.s3.dualstack.eu-west-2.amazonaws.com/deb/key.txt"
 
 - name: yggdrasil apt repo
-  apt_repository: repo='deb http://neilalexander.s3.eu-west-2.amazonaws.com/deb/ debian yggdrasil'
+  apt_repository: repo='deb http://neilalexander.s3.dualstack.eu-west-2.amazonaws.com/deb/ debian yggdrasil'
 
 - name: yggdrasil package is installed
   apt: name=yggdrasil
