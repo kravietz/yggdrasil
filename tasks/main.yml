@@ -36,6 +36,7 @@
     group: yggdrasil
     mode: 0640
     validate: "yggdrasil -normaliseconf -useconf < %s"
+  when: yggdrasil_enc_pubkey is defined and yggdrasil_enc_privkey is defined and yggdrasil_sig_pubkey is defined and yggdrasil_sig_privkey is defined
   notify:
   - restart yggdrasil
 
@@ -44,20 +45,3 @@
     name: yggdrasil
     state: started
     enabled: yes
-
-  # run setup to fetch newly created IPv6 address on tun0 interface
-- setup:
-
-- name: Yggdrasil systemd override directory
-  file:
-    dest: /etc/systemd/system/yggdrasil.service.d/
-    state: directory
-
-  # we need the Yggdrasil IPv6 address to set it as deprecated
-- name: decrease Yggdrasil address preference
-  template:
-    src: templates/override.conf.j2
-    dest: /etc/systemd/system/yggdrasil.service.d/override.conf
-  notify:
-  - restart yggdrasil
-  - reload systemd

@@ -10,10 +10,10 @@ admin_listen: "unix:///var/run/yggdrasil.sock"
 multicast_interfaces:
 - ".*"
 
-yggdrasil_enc_pubkey:
-yggdrasil_enc_privkey:
-yggdrasil_sig_pubkey:
-yggdrasil_sig_privkey:
+#yggdrasil_enc_pubkey:
+#yggdrasil_enc_privkey:
+#yggdrasil_sig_pubkey:
+#yggdrasil_sig_privkey:
 
 yggdrasil_linklocal_port: 0
 yggdrasil_ifname: auto
