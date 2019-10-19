@@ -1,7 +1,7 @@
 galaxy_info:
   author: Pawel Krawczuk
   description: Ansible role to install [Yggdrasil](https://yggdrasil-network.github.io/) mesh overlay network
-  company: your company (optional)
+  company: WebCookies.org
 
   license: MIT
 
