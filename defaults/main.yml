@@ -6,8 +6,8 @@ yggdrasil_peers: []
 yggdrasil_listen: []
 #- "tcp://[::]:8080"
 
-admin_listen: "unix:///var/run/yggdrasil.sock"
-multicast_interfaces:
+yggdrasil_admin_listen: "unix:///var/run/yggdrasil.sock"
+yggdrasil_multicast_interfaces:
 - ".*"
 
 #yggdrasil_enc_pubkey:
