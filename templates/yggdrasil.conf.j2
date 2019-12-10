@@ -1,25 +1,28 @@
 {
   "Peers": [
-    {% for item in yggdrasil_peers %}
-        "{{item}}"{% if not loop.last %}, {% endif %}
-    {% endfor %}
+{% for item in yggdrasil_peers %}
+        "{{item}}"
+
+{% endfor %}
   ],
   "InterfacePeers": {},
   "Listen": [
-    {% for item in yggdrasil_listen %}
-        "{{item}}"{% if not loop.last %}, {% endif %}
-    {% endfor %}
+{% for item in yggdrasil_listen %}
+        "{{item}}"
+
+{% endfor %}
   ],
   "AdminListen": "{{ yggdrasil_admin_listen }}",
   "MulticastInterfaces": [
-    {% for item in yggdrasil_multicast_interfaces %}
-        "{{item}}"{% if not loop.last %}, {% endif %}
-    {% endfor %}
-    ".*"
+{% for item in yggdrasil_multicast_interfaces %}
+        "{{item}}"
+
+{% endfor %}
   ],
   "AllowedEncryptionPublicKeys": [
     {% for item in yggdrasil_allowed_public_keys %}
-        "{{item}}"{% if not loop.last %}, {% endif %}
+        "{{item}}"
+
     {% endfor %}
   ],
   "EncryptionPublicKey": "{{yggdrasil_enc_pubkey}}",
@@ -36,36 +39,42 @@
     "AllowFromRemote": {% if yggdrasil_session_firewall_allow_remote %}true{% else %}false{% endif %},
     "AlwaysAllowOutbound": {% if yggdrasil_session_firewall_allow_outbound %}true{% else %}false{% endif %},
     "WhitelistEncryptionPublicKeys": [
-        {% for item in yggdrasil_session_firewall_whitelist %}
-        "{{item}}"{% if not loop.last %}, {% endif %}
-        {% endfor %}
+{% for item in yggdrasil_session_firewall_whitelist %}
+        "{{item}}"
+
+{% endfor %}
     ],
     "BlacklistEncryptionPublicKeys": [
-        {% for item in yggdrasil_session_firewall_blacklist %}
-        "{{item}}"{% if not loop.last %}, {% endif %}
-        {% endfor %}
+{% for item in yggdrasil_session_firewall_blacklist %}
+        "{{item}}"
+
+{% endfor %}
     ]
   },
   "TunnelRouting": {
     "Enable": {% if yggdrasil_tunnel_enable %}true{% else %}false{% endif %},
     "IPv6Destinations": {
-        {% for subnet,public_key in yggdrasil_tunnel_ipv6_destinations %}
-            "{{ subnet }}": "{{ public_key }}"{% if not loop.last %}, {% endif %}
-        {% endfor %}
+{% for subnet,public_key in yggdrasil_tunnel_ipv6_destinations %}
+            "{{ subnet }}": "{{ public_key }}"
+
+{% endfor %}
     },
     "IPv6Sources": [
-        {% for item in yggdrasil_tunnel_ipv6_sources %}
-        "{{item}}"{% if not loop.last %}, {% endif %}
-        {% endfor %}
+{% for item in yggdrasil_tunnel_ipv6_sources %}
+        "{{item}}"
+
+{% endfor %}
     ],
     "IPv4Destinations": {
-        {% for subnet,public_key in yggdrasil_tunnel_ipv4_destinations %}
-            "{{ subnet }}": "{{ public_key }}"{% if not loop.last %}, {% endif %}
-        {% endfor %}
+{% for subnet,public_key in yggdrasil_tunnel_ipv4_destinations %}
+            "{{ subnet }}": "{{ public_key }}"
+
+{% endfor %}
     },
     "IPv4Sources": [
         {% for item in yggdrasil_tunnel_ipv4_sources %}
-        "{{item}}"{% if not loop.last %}, {% endif %}
+        "{{item}}"
+
         {% endfor %}
     ]
   },
@@ -74,8 +83,9 @@
   },
   "NodeInfoPrivacy": {% if yggdrasil_nodeinfo_privacy %}true{% else %}false{% endif %},
   "NodeInfo": {
-    {% for k,v in yggdrasil_node_info.items() %}
-        "{{ k }}": "{{ v }}"{% if not loop.last %}, {% endif %}
-    {% endfor %}
+{% for k,v in yggdrasil_node_info.items() %}
+        "{{ k }}": "{{ v }}"
+
+{% endfor %}
     }
 }
