@@ -47,9 +47,7 @@ yggdrasil_tunnel_ipv4_sources: []
 
 yggdrasil_max_queue_size: 4194304
 
-yggdrasil_nodeinfo_privacy: no
+yggdrasil_nodeinfo_privacy: yes
 
 yggdrasil_node_info: {}
 #  name: mynode.y.example.com
-
-
