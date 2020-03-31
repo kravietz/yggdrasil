@@ -15,24 +15,24 @@
   "AdminListen": "{{ yggdrasil_admin_listen }}",
   "MulticastInterfaces": [
 {% for item in yggdrasil_multicast_interfaces %}
-        "{{item}}"
+        "{{ item }}"
 
 {% endfor %}
   ],
   "AllowedEncryptionPublicKeys": [
     {% for item in yggdrasil_allowed_public_keys %}
-        "{{item}}"
+        "{{ item }}"
 
     {% endfor %}
   ],
-  "EncryptionPublicKey": "{{yggdrasil_enc_pubkey}}",
-  "EncryptionPrivateKey": "{{yggdrasil_enc_privkey}}",
-  "SigningPublicKey": "{{yggdrasil_sig_pubkey}}",
-  "SigningPrivateKey": "{{yggdrasil_sig_privkey}}",
-  "LinkLocalTCPPort": {{yggdrasil_linklocal_port}},
-  "IfName": "{{yggdrasil_ifname}}",
+  "EncryptionPublicKey": "{{ yggdrasil_enc_pubkey |trim }}",
+  "EncryptionPrivateKey": "{{ yggdrasil_enc_privkey |trim }}",
+  "SigningPublicKey": "{{ yggdrasil_sig_pubkey |trim }}",
+  "SigningPrivateKey": "{{ yggdrasil_sig_privkey |trim }}",
+  "LinkLocalTCPPort": {{ yggdrasil_linklocal_port |trim }},
+  "IfName": "{{ yggdrasil_ifname }}",
   "IfTAPMode": {% if yggdrasil_iftapmode %}true{% else %}false{% endif %},
-  "IfMTU": {{yggdrasil_ifmtu}},
+  "IfMTU": {{ yggdrasil_ifmtu }},
   "SessionFirewall": {
     "Enable": {% if yggdrasil_session_firewall_enable %}true{% else %}false{% endif %},
     "AllowFromDirect": {% if yggdrasil_session_firewall_allow_direct %}true{% else %}false{% endif %},
@@ -40,13 +40,13 @@
     "AlwaysAllowOutbound": {% if yggdrasil_session_firewall_allow_outbound %}true{% else %}false{% endif %},
     "WhitelistEncryptionPublicKeys": [
 {% for item in yggdrasil_session_firewall_whitelist %}
-        "{{item}}"
+        "{{ item }}"
 
 {% endfor %}
     ],
     "BlacklistEncryptionPublicKeys": [
 {% for item in yggdrasil_session_firewall_blacklist %}
-        "{{item}}"
+        "{{ item }}"
 
 {% endfor %}
     ]
@@ -61,7 +61,7 @@
     },
     "IPv6Sources": [
 {% for item in yggdrasil_tunnel_ipv6_sources %}
-        "{{item}}"
+        "{{ item }}"
 
 {% endfor %}
     ],
@@ -73,7 +73,7 @@
     },
     "IPv4Sources": [
         {% for item in yggdrasil_tunnel_ipv4_sources %}
-        "{{item}}"
+        "{{ item }}"
 
         {% endfor %}
     ]
