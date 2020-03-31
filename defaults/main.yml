@@ -26,23 +26,22 @@ yggdrasil_session_firewall_enable: no
 yggdrasil_session_firewall_allow_direct: yes
 yggdrasil_session_firewall_allow_remote: yes
 yggdrasil_session_firewall_allow_outbound: yes
-yggdrasil_session_firewall_whitelist: []
-yggdrasil_session_firewall_blacklist: []
+yggdrasil_session_firewall_whitelist: null
+yggdrasil_session_firewall_blacklist: null
 
 # https://yggdrasil-network.github.io/2018/11/06/crypto-key-routing.html
 yggdrasil_tunnel_enable: no
-yggdrasil_tunnel_ipv6_destinations: []
-#- subnet: "fd64:642b:1a20::/48"
-#  public_key: "ef78da7fc983c6c210609529921a701ca3e43fa5cfd79f5f20cc67bf66e45c1a",
+yggdrasil_tunnel_ipv6_destinations: null
+# yggdrasil_tunnel_ipv6_destinations:
+#   "fd64:642b:1a20::/48": "ef78da7fc983c6c210609529921a701ca3e43fa5cfd79f5f20cc67bf66e45c1a"
 
-yggdrasil_tunnel_ipv6_sources: []
+yggdrasil_tunnel_ipv6_sources: null
 # - "aaaa:aaaa:aaaa:aaaa::/64"
 
-yggdrasil_tunnel_ipv4_destinations: []
-# - subnet: "b.b.b.b/24"
-#   public_key: "xxxxxxxxxxxxxx"
+yggdrasil_tunnel_ipv4_destinations: null
+#   "b.b.b.b/24": "ef78da7fc983c6c210609529921a701ca3e43fa5cfd79f5f20cc67bf66e45c1a"
 
-yggdrasil_tunnel_ipv4_sources: []
+yggdrasil_tunnel_ipv4_sources: null
 # - "a.a.a.a/24"
 
 yggdrasil_max_queue_size: 4194304

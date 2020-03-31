@@ -1,80 +1,36 @@
 {
-  "Peers": [
-{% for item in yggdrasil_peers %}
-        "{{ item }}"{% if not loop.last %}, {% endif %}
-{% endfor %}
-  ],
+  "Peers": {{ yggdrasil_peers |to_json }},
   "InterfacePeers": {},
-  "Listen": [
-{% for item in yggdrasil_listen %}
-        "{{item}}"{% if not loop.last %}, {% endif %}
-{% endfor %}
-  ],
+  "Listen": {{ yggdrasil_listen |to_json }},
   "AdminListen": "{{ yggdrasil_admin_listen }}",
-  "MulticastInterfaces": [
-{% for item in yggdrasil_multicast_interfaces %}
-        "{{ item }}"{% if not loop.last %}, {% endif %}
-{% endfor %}
-  ],
-  "AllowedEncryptionPublicKeys": [
-    {% for item in yggdrasil_allowed_public_keys %}
-        "{{ item }}"{% if not loop.last %}, {% endif %}
-    {% endfor %}
-  ],
+  "MulticastInterfaces": {{ yggdrasil_multicast_interfaces |to_json }},
+  "AllowedEncryptionPublicKeys": {{ yggdrasil_allowed_public_keys |to_json }},
   "EncryptionPublicKey": "{{ yggdrasil_enc_pubkey |trim }}",
   "EncryptionPrivateKey": "{{ yggdrasil_enc_privkey |trim }}",
   "SigningPublicKey": "{{ yggdrasil_sig_pubkey |trim }}",
   "SigningPrivateKey": "{{ yggdrasil_sig_privkey |trim }}",
   "LinkLocalTCPPort": {{ yggdrasil_linklocal_port |trim }},
   "IfName": "{{ yggdrasil_ifname }}",
-  "IfTAPMode": {% if yggdrasil_iftapmode %}true{% else %}false{% endif %},
+  "IfTAPMode": {{ yggdrasil_iftapmode |to_json }},
   "IfMTU": {{ yggdrasil_ifmtu }},
   "SessionFirewall": {
-    "Enable": {% if yggdrasil_session_firewall_enable %}true{% else %}false{% endif %},
-    "AllowFromDirect": {% if yggdrasil_session_firewall_allow_direct %}true{% else %}false{% endif %},
-    "AllowFromRemote": {% if yggdrasil_session_firewall_allow_remote %}true{% else %}false{% endif %},
-    "AlwaysAllowOutbound": {% if yggdrasil_session_firewall_allow_outbound %}true{% else %}false{% endif %},
-    "WhitelistEncryptionPublicKeys": [
-{% for item in yggdrasil_session_firewall_whitelist %}
-        "{{ item }}"{% if not loop.last %}, {% endif %}
-{% endfor %}
-    ],
-    "BlacklistEncryptionPublicKeys": [
-{% for item in yggdrasil_session_firewall_blacklist %}
-        "{{ item }}"{% if not loop.last %}, {% endif %}
-{% endfor %}
-    ]
+    "Enable": {{ yggdrasil_session_firewall_enable |to_json }},
+    "AllowFromDirect": {{ yggdrasil_session_firewall_allow_direct |to_json }},
+    "AllowFromRemote": {{ yggdrasil_session_firewall_allow_remote |to_json }},
+    "AlwaysAllowOutbound": {{ yggdrasil_session_firewall_allow_outbound |to_json }},
+    "WhitelistEncryptionPublicKeys": {{ yggdrasil_session_firewall_whitelist |to_json }},
+    "BlacklistEncryptionPublicKeys": {{ yggdrasil_session_firewall_blacklist |to_json }}
   },
   "TunnelRouting": {
-    "Enable": {% if yggdrasil_tunnel_enable %}true{% else %}false{% endif %},
-    "IPv6Destinations": {
-{% for subnet,public_key in yggdrasil_tunnel_ipv6_destinations %}
-            "{{ subnet }}": "{{ public_key }}"{% if not loop.last %}, {% endif %}
-{% endfor %}
-    },
-    "IPv6Sources": [
-{% for item in yggdrasil_tunnel_ipv6_sources %}
-        "{{ item }}"{% if not loop.last %}, {% endif %}
-{% endfor %}
-    ],
-    "IPv4Destinations": {
-{% for subnet,public_key in yggdrasil_tunnel_ipv4_destinations %}
-            "{{ subnet }}": "{{ public_key }}"{% if not loop.last %}, {% endif %}
-{% endfor %}
-    },
-    "IPv4Sources": [
-        {% for item in yggdrasil_tunnel_ipv4_sources %}
-        "{{ item }}"{% if not loop.last %}, {% endif %}
-        {% endfor %}
-    ]
+    "Enable": {{ yggdrasil_tunnel_enable |to_json }},
+    "IPv6RemoteSubnets": {{ yggdrasil_tunnel_ipv6_destinations | to_json }},
+    "IPv6LocalSubnets": {{ yggdrasil_tunnel_ipv6_sources |to_json }},
+    "IPv4RemoteSubnets": {{ yggdrasil_tunnel_ipv4_destinations |to_json }},
+    "IPv4LocalSubnets": {{ yggdrasil_tunnel_ipv4_sources |to_json }}
   },
   "SwitchOptions": {
     "MaxTotalQueueSize": {{ yggdrasil_max_queue_size }}
   },
-  "NodeInfoPrivacy": {% if yggdrasil_nodeinfo_privacy %}true{% else %}false{% endif %},
-  "NodeInfo": {
-{% for k,v in yggdrasil_node_info.items() %}
-        "{{ k }}": "{{ v }}"{% if not loop.last %}, {% endif %}
-{% endfor %}
-    }
+  "NodeInfoPrivacy": {{ yggdrasil_nodeinfo_privacy |to_json }},
+  "NodeInfo": {{ yggdrasil_node_info |to_json }}
 }
