@@ -9,7 +9,7 @@ tasks:
 - setup: |
     sudo -H pip3 install ansible ansible-lint
 - test: |
-    cd ansible-unbound/tests
+    cd ansible-yggdrasil/tests
     ansible --version
     ansible-lint test.yml
     ansible-playbook test.yml -i inventory --syntax-check
