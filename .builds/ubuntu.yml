@@ -1,0 +1,17 @@
+# build manifest for SourceHut
+# https://man.sr.ht/builds.sr.ht/
+image: ubuntu/latest
+packages:
+- python3-pip
+sources:
+- https://git.sr.ht/~kravietz/ansible-unbound
+tasks:
+- setup: |
+    sudo -H pip3 install ansible ansible-lint
+- test: |
+    cd ansible-unbound/tests
+    ansible --version
+    ansible-lint test.yml
+    ansible-playbook test.yml -i inventory --syntax-check
+    ansible-playbook test.yml -i inventory --become
+    sudo yggdrasilctl getSelf
