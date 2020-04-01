@@ -3,7 +3,7 @@ galaxy_info:
   description: Ansible role to install [Yggdrasil](https://yggdrasil-network.github.io/) mesh overlay network
   company: WebCookies.org
 
-  license: MIT
+  license: GPL-3.0-only
 
   min_ansible_version: 2.4
 
