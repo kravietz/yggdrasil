@@ -4,7 +4,7 @@ image: ubuntu/latest
 packages:
 - python3-pip
 sources:
-- https://git.sr.ht/~kravietz/ansible-unbound
+- https://git.sr.ht/~kravietz/ansible-yggdrasil
 tasks:
 - setup: |
     sudo -H pip3 install ansible ansible-lint
