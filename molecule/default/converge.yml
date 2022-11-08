@@ -1,5 +1,12 @@
 ---
-- name: Converge
+- name: Install gpg
+  hosts: all
+  tasks:
+    - name: Install gpg
+      ansible.builtin.apt:
+        name: gpg
+
+- name: Apply Yggdrasil role
   hosts: all
   roles:
     - role: kravietz.yggdrasil
