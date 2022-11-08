@@ -15,6 +15,11 @@
       ansible.builtin.apt_repository:
         repo: deb http://neilalexander.s3.dualstack.eu-west-2.amazonaws.com/deb/ debian yggdrasil
 
+- name: Ensure python installed as required by Ansible
+  ansible.builtin.package:
+    name: python
+  when: ansible_distribution == "Archlinux"
+
 - name: Yggdrasil COPR repo
   community.general.copr:
     name: neilalexander/yggdrasil-go
