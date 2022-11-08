@@ -1,4 +1,8 @@
 ---
+- name: Install gpg as required by apt_key
+  ansible.builtin.apt:
+    name: gnupg
+
 - name: Yggdrasil apt key
   ansible.builtin.apt_key:
     url: https://neilalexander.s3.dualstack.eu-west-2.amazonaws.com/deb/key.txt
