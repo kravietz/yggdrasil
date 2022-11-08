@@ -1,0 +1,23 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: kravietz.yggdrasil
+      yggdrasil_config:
+        Peers: []
+        InterfacePeers: {}
+        Listen: []
+        AdminListen: "unix:///var/run/yggdrasil.sock"
+        MulticastInterfaces:
+          - Regex: ".*"
+            Beacon: true
+            Listen: true
+            Port: 0
+        AllowedPublicKeys: []
+        PublicKey: 18a2521cd2a8513b15b99d9cea2250905a5d9dfd81e7a64e7c203af0b0340dcb
+        # Remember to always protect this with ansible-vault in production
+        PrivateKey: 5f43ce212d82fa8a88824459470f506f7a478c1c7df215220044dff36c79020f18a2521cd2a8513b15b99d9cea2250905a5d9dfd81e7a64e7c203af0b0340dcb
+        IfName: auto
+        IfMTU: 65535
+        NodeInfoPrivacy: false
+        NodeInfo: null
