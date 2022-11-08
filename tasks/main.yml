@@ -15,6 +15,11 @@
     repo: deb http://neilalexander.s3.dualstack.eu-west-2.amazonaws.com/deb/ debian yggdrasil
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
+- name: Yggdrasil COPR repo
+  community.general.copr:
+    name: neilalexander/yggdrasil-go
+  when: ansible_distribution == "CentOS" or ansible_distribution == "RedHat"
+
 - name: Yggdrasil package is installed
   ansible.builtin.package:
     name: yggdrasil
