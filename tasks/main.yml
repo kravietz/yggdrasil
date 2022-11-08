@@ -1,12 +1,12 @@
 ---
 - name: Prepare Debian/Ubuntu repositories
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
-  ansible.builtin.block:
+  block:
     - name: Install gpg as required by apt_key
       ansible.builtin.apt:
         update_cache: true
         name: gnupg
-      
+
     - name: Add Yggdrasil apt key
       ansible.builtin.apt_key:
         url: https://neilalexander.s3.dualstack.eu-west-2.amazonaws.com/deb/key.txt
