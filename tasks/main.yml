@@ -55,6 +55,11 @@
     fail_msg: "When `yggdrasil_config` is defined, it must contain `PrivateKey` and `PublicKey`"
   when: yggdrasil_config is defined
 
+- name: Disable handler for Molecule testing
+  ansible.builtin.set_fact:
+    handler_enabled: true
+  tags: molecule-notest
+
 - name: Yggdrasil configuration file
   ansible.builtin.template:
     src: templates/yggdrasil.conf.j2

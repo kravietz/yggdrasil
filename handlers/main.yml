@@ -4,8 +4,10 @@
     name: yggdrasil
     state: restarted
   tags: molecule-notest
+  when: handler_enabled | default(false)
 
 - name: Reload apparmor yggdrasil
   ansible.builtin.command: apparmor_parser -r -W /etc/apparmor.d/usr.bin.yggdrasil
   tags: molecule-notest
+  when: handler_enabled | default(false)
 
