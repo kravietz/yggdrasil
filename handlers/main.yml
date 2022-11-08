@@ -3,7 +3,9 @@
   ansible.builtin.service:
     name: yggdrasil
     state: restarted
+  tags: molecule-notest
 
 - name: Reload apparmor yggdrasil
   ansible.builtin.command: apparmor_parser -r -W /etc/apparmor.d/usr.bin.yggdrasil
+  tags: molecule-notest
 

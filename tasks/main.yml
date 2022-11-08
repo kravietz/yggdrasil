@@ -72,3 +72,4 @@
     name: yggdrasil
     state: "{{ yggdrasil_service_state }}"
     enabled: "{{ yggdrasil_service_enabled }}"
+  tags: molecule-notest
