@@ -1,6 +1,7 @@
 ---
 yggdrasil_service_state: started
 yggdrasil_service_enabled: true
+yggdrasil_apparmor: false
 
 # yggdrasil_config:
 #   Peers: []

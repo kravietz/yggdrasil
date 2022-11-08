@@ -45,6 +45,7 @@
     mode: 0644
   notify:
     - Reload apparmor yggdrasil
+  when: yggdrasil_apparmor
 
 - name: Verify if keys are defined
   ansible.builtin.assert:
