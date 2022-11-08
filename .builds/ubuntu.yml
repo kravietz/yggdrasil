@@ -1,17 +1,18 @@
+---
 # build manifest for SourceHut
 # https://man.sr.ht/builds.sr.ht/
 image: ubuntu/latest
 packages:
-- python3-pip
+  - python3-pip
 sources:
-- https://git.sr.ht/~kravietz/ansible-yggdrasil
+  - https://git.sr.ht/~kravietz/ansible-yggdrasil
 tasks:
-- setup: |
-    sudo -H pip3 -q install ansible ansible-lint
-- test: |
-    cd ansible-yggdrasil/tests
-    ansible --version
-    ansible-lint test.yml
-    ansible-playbook test.yml -i inventory --syntax-check
-    ansible-playbook test.yml -i inventory --become
-    sudo yggdrasilctl getSelf
+  - setup: |
+      sudo -H pip3 -q install ansible ansible-lint
+  - test: |
+      cd ansible-yggdrasil/tests
+      ansible --version
+      ansible-lint test.yml
+      ansible-playbook test.yml -i inventory --syntax-check
+      ansible-playbook test.yml -i inventory --become
+      sudo yggdrasilctl getSelf

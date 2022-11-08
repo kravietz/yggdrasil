@@ -1,52 +1,59 @@
 ---
-- name: yggdrasil apt key
-  apt_key: url="https://neilalexander.s3.dualstack.eu-west-2.amazonaws.com/deb/key.txt"
+- name: Yggdrasil apt key
+  ansible.builtin.apt_key:
+    url: https://neilalexander.s3.dualstack.eu-west-2.amazonaws.com/deb/key.txt
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
-- name: yggdrasil apt repo
-  apt_repository: repo='deb http://neilalexander.s3.dualstack.eu-west-2.amazonaws.com/deb/ debian yggdrasil'
+- name: Yggdrasil apt repo
+  ansible.builtin.apt_repository:
+    repo: deb http://neilalexander.s3.dualstack.eu-west-2.amazonaws.com/deb/ debian yggdrasil
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
-- name: yggdrasil package is installed
-  apt:
+- name: Yggdrasil package is installed
+  ansible.builtin.package:
     name: yggdrasil
 
-- name: apparmor package is installed
-  apt:
+- name: Apparmor package is installed
+  ansible.builtin.package:
     name: apparmor
 
-- name: update gai.conf label
-  lineinfile:
+- name: Update gai.conf label
+  ansible.builtin.lineinfile:
     dest: /etc/gai.conf
-    line: "label 0200::/7 15"
-    regexp: "^label\\s+0200::/7"
+    line: label 200::/7      15
+    regexp: ^label\s+0?200::/7
 
-- name: update gai.conf precedence
-  lineinfile:
+- name: Update gai.conf precedence
+  ansible.builtin.lineinfile:
     dest: /etc/gai.conf
-    line: "precedence 0200::/7 90"
-    regexp: "^precedence\\s+0200::/7"
+    line: precedence 200::/7        90
+    regexp: ^precedence\s+0?200::/7
 
 - name: AppArmor policy for Yggdrasil
-  copy:
+  ansible.builtin.copy:
     src: files/apparmor.conf
     dest: /etc/apparmor.d/usr.bin.yggdrasil
-    validate: "apparmor_parser -d %s"
+    validate: apparmor_parser -d %s
+    owner: root
+    group: root
+    mode: 0644
   notify:
-  - reload apparmor yggdrasil
+    - reload apparmor yggdrasil
 
-- name: configuration file
-  template:
+- name: Configuration file
+  ansible.builtin.template:
     src: templates/yggdrasil.conf.j2
     dest: /etc/yggdrasil.conf
     owner: root
     group: yggdrasil
     mode: 0640
-    validate: "yggdrasil -normaliseconf -useconf < %s"
+    validate: yggdrasil -normaliseconf -useconf < %s
   when: yggdrasil_enc_pubkey is defined and yggdrasil_enc_privkey is defined and yggdrasil_sig_pubkey is defined and yggdrasil_sig_privkey is defined
   notify:
-  - restart yggdrasil
+    - restart yggdrasil
 
-- name: yggdrasil service
-  service:
+- name: Yggdrasil service
+  ansible.builtin.service:
     name: yggdrasil
     state: started
-    enabled: yes
+    enabled: true

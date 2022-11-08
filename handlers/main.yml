@@ -1,11 +1,12 @@
 ---
 - name: restart yggdrasil
-  service:
+  ansible.builtin.service:
     name: yggdrasil
     state: restarted
 
 - name: reload apparmor yggdrasil
-  command: apparmor_parser -r -W /etc/apparmor.d/usr.bin.yggdrasil
+  ansible.builtin.command: apparmor_parser -r -W /etc/apparmor.d/usr.bin.yggdrasil
 
 - name: reload systemd
-  systemd: daemon_reload=yes
+  ansible.builtin.systemd:
+    daemon_reload: true

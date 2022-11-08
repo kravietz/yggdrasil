@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: kravietz
   description: Ansible role to install [Yggdrasil](https://yggdrasil-network.github.io/) mesh overlay network
@@ -6,23 +7,23 @@ galaxy_info:
 
   license: GPL-3.0-only
 
-  min_ansible_version: 2.4
+  min_ansible_version: "2.4"
 
   platforms:
-  - name: Ubuntu
-    versions:
-    - all
+    - name: Ubuntu
+      versions:
+        - all
 
-  - name: Debian
-    versions:
-    - all
+    - name: Debian
+      versions:
+        - all
 
-  - name: Arch
-    versions:
-    - all
+    - name: Arch
+      versions:
+        - all
 
   galaxy_tags:
-  - networking
-  - security
-  - privacy
-  - vpn
+    - networking
+    - security
+    - privacy
+    - vpn

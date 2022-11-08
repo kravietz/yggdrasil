@@ -1,52 +1,50 @@
 ---
 # Get your local public node addresses from https://github.com/yggdrasil-network/public-peers
 yggdrasil_peers: []
-#- "tcp://185.164.138.18:1001"
+# - "tcp://185.164.138.18:1001"
 
 yggdrasil_listen: []
-#- "tcp://[::]:8080"
+# - "tcp://[::]:8080"
 
-yggdrasil_admin_listen: "unix:///var/run/yggdrasil.sock"
+yggdrasil_admin_listen: unix:///var/run/yggdrasil.sock
 yggdrasil_multicast_interfaces:
-- ".*"
+  - .*
 
-#yggdrasil_enc_pubkey:
-#yggdrasil_enc_privkey:
-#yggdrasil_sig_pubkey:
-#yggdrasil_sig_privkey:
+# yggdrasil_enc_pubkey:
+# yggdrasil_enc_privkey:
+# yggdrasil_sig_pubkey:
+# yggdrasil_sig_privkey:
 
 yggdrasil_linklocal_port: 0
 yggdrasil_ifname: auto
-yggdrasil_iftapmode: no
+yggdrasil_iftapmode: false
 yggdrasil_ifmtu: 65535
 
 yggdrasil_allowed_public_keys: []
-
-yggdrasil_session_firewall_enable: no
-yggdrasil_session_firewall_allow_direct: yes
-yggdrasil_session_firewall_allow_remote: yes
-yggdrasil_session_firewall_allow_outbound: yes
-yggdrasil_session_firewall_whitelist: null
-yggdrasil_session_firewall_blacklist: null
-
+yggdrasil_session_firewall_enable: false
+yggdrasil_session_firewall_allow_direct: true
+yggdrasil_session_firewall_allow_remote: true
+yggdrasil_session_firewall_allow_outbound: true
+yggdrasil_session_firewall_whitelist:
+yggdrasil_session_firewall_blacklist:
 # https://yggdrasil-network.github.io/2018/11/06/crypto-key-routing.html
-yggdrasil_tunnel_enable: no
-yggdrasil_tunnel_ipv6_destinations: null
+yggdrasil_tunnel_enable: false
+yggdrasil_tunnel_ipv6_destinations:
 # yggdrasil_tunnel_ipv6_destinations:
 #   "fd64:642b:1a20::/48": "ef78da7fc983c6c210609529921a701ca3e43fa5cfd79f5f20cc67bf66e45c1a"
 
-yggdrasil_tunnel_ipv6_sources: null
+yggdrasil_tunnel_ipv6_sources:
 # - "aaaa:aaaa:aaaa:aaaa::/64"
 
-yggdrasil_tunnel_ipv4_destinations: null
+yggdrasil_tunnel_ipv4_destinations:
 #   "b.b.b.b/24": "ef78da7fc983c6c210609529921a701ca3e43fa5cfd79f5f20cc67bf66e45c1a"
 
-yggdrasil_tunnel_ipv4_sources: null
+yggdrasil_tunnel_ipv4_sources:
 # - "a.a.a.a/24"
 
 yggdrasil_max_queue_size: 4194304
 
-yggdrasil_nodeinfo_privacy: yes
+yggdrasil_nodeinfo_privacy: true
 
 yggdrasil_node_info: {}
 #  name: mynode.y.example.com
