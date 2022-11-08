@@ -1,0 +1,23 @@
+---
+name: molecule
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: "${{ github.repository }}"
+      - name: Ansible Molecule
+        uses: gofrolist/molecule-action@v2.3.2
+        with:
+          molecule_working_dir: "${{ github.repository }}"

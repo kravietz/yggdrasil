@@ -38,9 +38,17 @@
     group: root
     mode: 0644
   notify:
-    - reload apparmor yggdrasil
+    - Reload apparmor yggdrasil
 
-- name: Configuration file
+- name: Verify if keys are defined
+  ansible.builtin.assert:
+    that:
+      - yggdrasil_config.PrivateKey is defined
+      - yggdrasil_config.PublicKey is defined
+    fail_msg: "When `yggdrasil_config` is defined, it must contain `PrivateKey` and `PublicKey`"
+  when: yggdrasil_config is defined
+
+- name: Yggdrasil configuration file
   ansible.builtin.template:
     src: templates/yggdrasil.conf.j2
     dest: /etc/yggdrasil.conf
@@ -48,12 +56,12 @@
     group: yggdrasil
     mode: 0640
     validate: yggdrasil -normaliseconf -useconf < %s
-  when: yggdrasil_enc_pubkey is defined and yggdrasil_enc_privkey is defined and yggdrasil_sig_pubkey is defined and yggdrasil_sig_privkey is defined
+  when: yggdrasil_config is defined
   notify:
-    - restart yggdrasil
+    - Restart yggdrasil
 
 - name: Yggdrasil service
   ansible.builtin.service:
     name: yggdrasil
-    state: started
-    enabled: true
+    state: "{{ yggdrasil_service_state }}"
+    enabled: "{{ yggdrasil_service_enabled }}"
