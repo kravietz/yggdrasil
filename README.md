@@ -88,9 +88,9 @@ yggdrasil_node_info: {}
 License
 -------
 
-MIT
+GPL-3+
 
 Author Information
 ------------------
 
-Pawel Krawczyk <pawel.krawczyk@hush.com>
+Pawel Krawczyk https://krvtz.net/
