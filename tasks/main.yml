@@ -1,19 +1,19 @@
 ---
-- name: Install gpg as required by apt_key
-  ansible.builtin.apt:
-    update_cache: true
-    name: gnupg
+- name: Prepare Debian/Ubuntu repositories
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+  ansible.builtin.block:
+    - name: Install gpg as required by apt_key
+      ansible.builtin.apt:
+        update_cache: true
+        name: gnupg
+      
+    - name: Add Yggdrasil apt key
+      ansible.builtin.apt_key:
+        url: https://neilalexander.s3.dualstack.eu-west-2.amazonaws.com/deb/key.txt
 
-- name: Yggdrasil apt key
-  ansible.builtin.apt_key:
-    url: https://neilalexander.s3.dualstack.eu-west-2.amazonaws.com/deb/key.txt
-  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
-
-- name: Yggdrasil apt repo
-  ansible.builtin.apt_repository:
-    repo: deb http://neilalexander.s3.dualstack.eu-west-2.amazonaws.com/deb/ debian yggdrasil
-  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+    - name: Add Yggdrasil apt repo
+      ansible.builtin.apt_repository:
+        repo: deb http://neilalexander.s3.dualstack.eu-west-2.amazonaws.com/deb/ debian yggdrasil
 
 - name: Yggdrasil COPR repo
   community.general.copr:
