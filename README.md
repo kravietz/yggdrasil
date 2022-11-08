@@ -27,12 +27,14 @@ LAN segment, this is only required on on one of them as the rest will connect us
 Remember that other nodes will try to connect to your node on port `9001/udp`, so firewall needs to be managed accordingly.
 
 Service state is determined by `yggdrasil_service_state` variable (default `started`) and `yggdrasil_service_enabled`
-(default `true`).
+(default `true`). The `yggdrasil_apparmor` variable controls whether an AppArmor profile for Yggdrasil should be installed
+and enabled, which will only works on systems with AppArmor enabled (thus default `false`).
  
 
 ```yamlex
 yggdrasil_service_state: started
 yggdrasil_service_enabled: true
+yggdrasil_apparmor: false
 
 # basic configuration as produced by `yggdrasil -genconf`
 yggdrasil_config:
