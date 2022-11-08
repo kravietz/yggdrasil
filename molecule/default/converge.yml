@@ -4,7 +4,7 @@
   tasks:
     - name: Install gpg
       ansible.builtin.apt:
-        name: gpg
+        name: gnupg
 
 - name: Apply Yggdrasil role
   hosts: all
