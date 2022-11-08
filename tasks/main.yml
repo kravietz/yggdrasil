@@ -1,7 +1,9 @@
 ---
 - name: Install gpg as required by apt_key
   ansible.builtin.apt:
+    update_cache: true
     name: gnupg
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 - name: Yggdrasil apt key
   ansible.builtin.apt_key:
