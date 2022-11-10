@@ -20,11 +20,6 @@
     update_cache: true
   when: ansible_distribution == "Archlinux"
 
-- name: Yggdrasil COPR repo
-  community.general.copr:
-    name: neilalexander/yggdrasil-go
-  when: ansible_distribution == "CentOS" or ansible_distribution == "RedHat"
-
 - name: Yggdrasil package is installed
   ansible.builtin.package:
     name: yggdrasil
