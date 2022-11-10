@@ -20,6 +20,11 @@
     update_cache: true
   when: ansible_distribution == "Archlinux"
 
+- name: Yggdrasil COPR repo
+  community.general.copr:
+    name: neilalexander/yggdrasil-go
+  when: ansible_distribution == "Fedora"
+
 - name: Yggdrasil package is installed
   ansible.builtin.package:
     name: yggdrasil
@@ -75,7 +80,7 @@
     owner: root
     group: root
     mode: 0640
-    validate: yggdrasil -normaliseconf -useconf < %s
+    validate: /usr/bin/yggdrasil -normaliseconf -useconf < %s
   when: yggdrasil_config is defined
   notify:
     - Restart yggdrasil
