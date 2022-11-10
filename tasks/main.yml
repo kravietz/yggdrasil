@@ -39,12 +39,14 @@
     dest: /etc/gai.conf
     line: label 200::/7      15
     regexp: ^label\s+0?200::/7
+  when: yggdrasil_gai
 
 - name: Update gai.conf precedence
   ansible.builtin.lineinfile:
     dest: /etc/gai.conf
     line: precedence 200::/7        90
     regexp: ^precedence\s+0?200::/7
+  when: yggdrasil_gai
 
 - name: AppArmor policy for Yggdrasil
   ansible.builtin.copy:

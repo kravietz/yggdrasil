@@ -1,7 +1,12 @@
 ---
 yggdrasil_service_state: started
 yggdrasil_service_enabled: true
+
+# configure AppArmor profile for Yggdrasil daemon
 yggdrasil_apparmor: false
+
+# update gai.conf(5)
+yggdrasil_gai: false
 
 # yggdrasil_config:
 #   Peers: []
