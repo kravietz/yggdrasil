@@ -5,7 +5,8 @@ driver:
   name: docker
 platforms:
   - name: instance
-    image: archlinux:latest
+    # the official ArchLinux image has no Python
+    image: jahrik/docker-archlinux-ansible
 provisioner:
   name: ansible
 verifier:
