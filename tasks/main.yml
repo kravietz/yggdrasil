@@ -32,6 +32,7 @@
 - name: Apparmor package is installed
   ansible.builtin.package:
     name: apparmor
+  when: yggdrasil_apparmor
 
 - name: Update gai.conf label
   ansible.builtin.lineinfile:
