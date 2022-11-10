@@ -34,7 +34,12 @@ and enabled, which will only works on systems with AppArmor enabled (thus defaul
 ```yamlex
 yggdrasil_service_state: started
 yggdrasil_service_enabled: true
+
+# configure AppArmor profile for Yggdrasil daemon
 yggdrasil_apparmor: false
+
+# update gai.conf(5) with Yggdrasil prefix
+yggdrasil_gai: false
 
 # basic configuration as produced by `yggdrasil -genconf`
 yggdrasil_config:
