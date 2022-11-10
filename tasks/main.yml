@@ -73,7 +73,7 @@
     src: templates/yggdrasil.conf.j2
     dest: /etc/yggdrasil.conf
     owner: root
-    group: yggdrasil
+    group: root
     mode: 0640
     validate: yggdrasil -normaliseconf -useconf < %s
   when: yggdrasil_config is defined
